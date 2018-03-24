@@ -357,7 +357,7 @@ export default React.createClass({
           let start_time = i.alternatives[0].timestamps[0][1];
           // if (start_time < (prev_result_end_time + 1))
             if(start_time < prev_result_end_time + 0.5)
-              i.speaker
+              i.speaker;
 
 
           //set speaker metric
