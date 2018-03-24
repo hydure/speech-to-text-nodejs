@@ -19,6 +19,9 @@ const ERR_MIC_NARROWBAND = 'Microphone transcription cannot accommodate narrowba
 export default React.createClass({
   displayName: 'Demo',
 
+
+
+
   getInitialState() {
     return {
       model: 'en-US_BroadbandModel',
@@ -331,12 +334,45 @@ export default React.createClass({
     return r;
   },
 
+
+
+////
+
+
+
+
   getFinalAndLatestInterimResult() {
     const final = this.getFinalResults();
     const interim = this.getCurrentInterimResult();
     if (interim) {
       final.push(interim);
     }
+
+    //console.log(JSON.stringify(final, null, 2));
+
+    if (final.length != 0) {
+      if (final[0].results) {
+        let prev_result_end_time = -2000;
+        for (let i of final[0].results) {
+          let start_time = i.alternatives[0].timestamps[0][1];
+          // if (start_time < (prev_result_end_time + 1))
+            if(start_time < prev_result_end_time + 0.5)
+              i.speaker
+
+
+          //set speaker metric
+
+          prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
+
+
+        }
+      }
+    }
+
+
+    //console.log(JSON.stringify(final.results.alternatives, null, 2));
+
+
     return final;
   },
 
