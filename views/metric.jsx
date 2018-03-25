@@ -8,13 +8,23 @@ export default function MetricView(props) {
   //console.log(props.speaker_metrics);
 
   const result = Object.keys(props.speaker_metrics).map((speaker_id, index) =>
-    (<div>Speaker: {speaker_id}{" "}{Object.keys(props.speaker_metrics[speaker_id]).map((metric_name, i) =>
-    (<span>{metric_name}{"-"}{props.speaker_metrics[speaker_id][metric_name]}{" "}</span>)
-  )}</div>));
+    (<div className="column">
+        <div className="base--button" style={{
+          minHeight: '100px',
+        }}>
+          <input >
+
+          {/*     Speaker: {speaker_id}{" "}{Object.keys(props.speaker_metrics[speaker_id]).map((metric_name, i) =>
+//   (<span>{metric_name}{"-"}{props.speaker_metrics[speaker_id][metric_name]}{" "}</span>)
+// )}
+*/}
+          </input>
+      </div>
+    </div>));
 
 
 
-  return <div>{result}</div>
+  return <div className="flex setup">{result}</div>
 }
 
 
