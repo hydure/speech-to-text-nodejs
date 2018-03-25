@@ -356,11 +356,11 @@ export default React.createClass({
 
 
 
-          //set speaker metric
 
           prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
 
-
+          if(speakers[i.speaker] && i.speaker != undefined)
+            speakers[i.speaker].timespent += (prev_result_end_time - start_time);
         }
       }
     }
@@ -369,7 +369,6 @@ export default React.createClass({
 
     return speakers;
   },
-
 
 
   getFinalAndLatestInterimResult() {
