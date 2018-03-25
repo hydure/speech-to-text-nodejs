@@ -543,10 +543,11 @@ export default React.createClass({
 
         {err}
 
+        <div style={{display: 'flex', flexDirection: 'row'}}>
         <Tabs selected={0}>
           <Pane label="Text">
             {this.state.settingsAtStreamStart.speakerLabels
-              ? <SpeakersView messages={messages} />
+              ? <div><SpeakersView messages={messages} /></div>
               : <Transcript messages={messages} />}
           </Pane>
           <Pane label="Word Timings and Alternatives">
@@ -566,7 +567,7 @@ export default React.createClass({
 
         <MetricView speaker_metrics={speaker_metrics} onSpeakerNameChange={this.handleChangeSpeakerName}/>
 
-
+  </div>
       </Dropzone>
     );
   },
