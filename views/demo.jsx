@@ -455,7 +455,7 @@ export default React.createClass({
             <p>{'Watson Speech to Text supports .mp3, .mpeg, .wav, .opus, and .flac files up to 200mb.'}</p>
           </div>
         </div>
-        <h2 className="base--h2">eQualizer</h2>
+        <h2 className="base--h1">eQualizer</h2>
         <h2 className="base--h4">Transcribe Audio</h2>
 
         <ul className="base--ul">
