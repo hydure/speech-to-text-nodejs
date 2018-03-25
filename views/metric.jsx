@@ -21,5 +21,5 @@ export default function MetricView(props) {
 
 
 MetricView.propTypes = {
-  speaker_metrics: PropTypes.array.isRequired, // eslint-disable-line
+  speaker_metrics: PropTypes.object.isRequired, // eslint-disable-line
 };
