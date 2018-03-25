@@ -12,13 +12,14 @@ export default function MetricView(props) {
         <div className="base--button" style={{
           minHeight: '100px',
         }}>
-          <input >
+          <input  style={{ minHieght: '100px', textAlign: 'center', border: 'none' ,outline: 'none'
+}}  value={'Speaker: ' + speaker_id}/>
 
           {/*     Speaker: {speaker_id}{" "}{Object.keys(props.speaker_metrics[speaker_id]).map((metric_name, i) =>
 //   (<span>{metric_name}{"-"}{props.speaker_metrics[speaker_id][metric_name]}{" "}</span>)
 // )}
 */}
-          </input>
+
       </div>
     </div>));
 
