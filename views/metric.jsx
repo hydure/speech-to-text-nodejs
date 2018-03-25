@@ -22,6 +22,7 @@ export default function MetricView(props) {
             (e) => {
                 //this.updateInput(e);
                 if (e.key === 'Enter') {
+                    console.log();
                     props.onSpeakerNameChange(speaker_id, "placeholder"/* TODO: determine how to get input value */);
                 }
             }

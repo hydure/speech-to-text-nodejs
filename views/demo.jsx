@@ -357,7 +357,7 @@ export default React.createClass({
         for (let i of instantnoodlesaretasty[0].results) {
           if (!speakers[i.speaker] && i.speaker != undefined){
 
-            speakers[i.speaker] = {aggressive: 0, hesitance: 0, timespent: 0};
+            speakers[i.speaker] = {aggressive: 0, hesitance: 0, timespent: 0, lastSpoken: 0};
           }
           let start_time = i.alternatives[0].timestamps[0][1];
           // if (start_time < (prev_result_end_time + 1))
@@ -368,9 +368,10 @@ export default React.createClass({
 
 
           prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
-
-          if(speakers[i.speaker] && i.speaker != undefined)
+          if(speakers[i.speaker] && i.speaker != undefined) {
+            speakers[i.speaker].lastSpoken = prev_result_end_time;
             speakers[i.speaker].timespent += (prev_result_end_time - start_time);
+          }
         }
       }
     }
