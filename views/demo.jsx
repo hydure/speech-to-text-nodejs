@@ -363,9 +363,11 @@ export default React.createClass({
           }
           let start_time = i.alternatives[0].timestamps[0][1];
           // if (start_time < (prev_result_end_time + 1))
-          if(start_time < prev_result_end_time + 0.5)
-            speakers[i.speaker].aggressive += 1;
-
+          if (speakers[i.speaker] && i.speaker != undefined) {
+            if(start_time < prev_result_end_time + 0.5) {
+              speakers[i.speaker].aggressive += 1;
+            }
+          }
 
 
 
@@ -380,7 +382,9 @@ export default React.createClass({
     }
 
     for (let i = 0; i < speakers.length; i++){
-      speakers[i.speaker].lastSpoken = latestTime - speakers[i.speaker].lastSpoken;
+      if(speakers[i]) {
+        speakers[i].lastSpoken = latestTime - speakers[i].lastSpoken;
+      }
     }
 
     console.log(speakers);
@@ -491,7 +495,8 @@ export default React.createClass({
               />
             </p>
 
-            <p className={this.supportsSpeakerLabels() ? 'base--p' : 'base--p_light'}>
+          {/* hidden option */}
+            <p className={this.supportsSpeakerLabels() ? 'base--p' : 'base--p_light'} style={{display:"none",}}>
               <input
                 className="base--checkbox"
                 type="checkbox"
@@ -506,7 +511,9 @@ export default React.createClass({
             </p>
 
           </div>
-          <div className="column">
+          
+          {/* hidden option */}
+          <div className="column" style={{ display:"none", }}>
 
             <p>Keywords to spot: <input
               value={this.state.keywords}
@@ -518,8 +525,8 @@ export default React.createClass({
             /></p>
 
           </div>
+        
         </div>
-
 
         <div className="flex buttons">
 
@@ -545,11 +552,16 @@ export default React.createClass({
 
         <div style={{display: 'flex', flexDirection: 'row'}}>
         <Tabs selected={0}>
-          <Pane label="Text">
+          <Pane label="Transcript">
             {this.state.settingsAtStreamStart.speakerLabels
               ? <div><SpeakersView messages={messages} /></div>
               : <Transcript messages={messages} />}
+
+              <div label="autoscroll-marker" style={{ float:"left", clear: "both" }}
+                 ref={(el) => { this.transcriptEnd = el; this.transcriptEnd != null ? this.transcriptEnd.scrollIntoView({ behavior: "smooth" }) : ''; }}>
+              </div>
           </Pane>
+          {/*
           <Pane label="Word Timings and Alternatives">
             <TimingView messages={messages} />
           </Pane>
@@ -562,7 +574,7 @@ export default React.createClass({
           </Pane>
           <Pane label="JSON">
             <JSONView raw={this.state.rawMessages} formatted={this.state.formattedMessages} />
-          </Pane>
+          </Pane>*/}
         </Tabs>
 
         <MetricView speaker_metrics={speaker_metrics} onSpeakerNameChange={this.handleChangeSpeakerName}/>

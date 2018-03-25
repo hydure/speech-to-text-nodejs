@@ -15,14 +15,14 @@ export default function MetricView(props) {
   const result = Object.keys(props.speaker_metrics).map((speaker_id, index) =>
     (<div className="row">
         <div className="base--button" style={{
-          minHeight: '100px', borderColor: props.speaker_metrics[speaker_id]['aggressive'] > 0 ? 'red' : 'purple',
+          minHeight: '75px', borderColor: props.speaker_metrics[speaker_id].aggressive > 0 ? 'red' : 'purple',
         }}>
 
           {console.log(props.speaker_metrics[speaker_id].lastSpoken)}
 
           {props.speaker_metrics[speaker_id].lastSpoken >= 120 ? "User haven't said anything in a while" : ""}
           
-          <input style={{ minHeight: '100px', textAlign: 'center', border: 'none' ,outline: 'none'
+          <input style={{ minHeight: '75px', textAlign: 'center', border: 'none' ,outline: 'none'
 }} onKeyPress={
             (e) => {
                 //this.updateInput(e);

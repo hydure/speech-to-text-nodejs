@@ -8,7 +8,11 @@
 }
 
 .tab-panels--tab-content {
-    min-height: 250px;
+    min-height: 500px;
+    max-height: 500px;
+    min-width: 700px;
+    max-width: 700px;
+    overflow-y: auto;
 }
 
 .arrow-box-container {
