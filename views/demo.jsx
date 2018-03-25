@@ -20,9 +20,6 @@ const ERR_MIC_NARROWBAND = 'Microphone transcription cannot accommodate narrowba
 export default React.createClass({
   displayName: 'Demo',
 
-
-
-
   getInitialState() {
     return {
       model: 'en-US_BroadbandModel',
@@ -30,6 +27,10 @@ export default React.createClass({
       formattedMessages: [],
       audioSource: null,
       speakerLabels: true,
+
+      // nametags allow the moderater to identify speakers with recognizable names
+      speakerNametags: {},
+
       keywords: this.getKeywords('en-US_BroadbandModel'),
       // transcript model and keywords are the state that they were when the button was clicked.
       // Changing them during a transcription would cause a mismatch between the setting sent to the
@@ -47,7 +48,7 @@ export default React.createClass({
     if (this.state.audioSource) {
       this.stopTranscription();
     }
-    this.setState({ rawMessages: [], formattedMessages: [], error: null });
+    this.setState({ rawMessages: [], formattedMessages: [], error: null, speakerNametags: {} });
   },
 
   /**
@@ -60,6 +61,8 @@ export default React.createClass({
         model: this.state.model,
         keywords: this.getKeywordsArr(),
         speakerLabels: this.state.speakerLabels,
+
+        speakerNametags: this.state.speakerNametags
       },
     });
   },
@@ -97,7 +100,14 @@ export default React.createClass({
       resultsBySpeaker: this.state.speakerLabels,
       // allow interim results through before the speaker has been determined
       speakerlessInterim: this.state.speakerLabels,
+
+      speakerNametags: this.state.speakerNametags
     }, extra);
+  },
+
+  handleChangeSpeakerName(speaker_id, name) {
+    this.state.speakerNametags[speaker_id] = name;
+    this.setState({speakerNametags : this.state.speakerNametags});
   },
 
   isNarrowBand(model) {
@@ -405,6 +415,9 @@ export default React.createClass({
   },
 
   render() {
+    console.log("nametags");
+    console.log(this.state.speakerNametags);
+
     const buttonsEnabled = !!this.state.token;
     const buttonClass = buttonsEnabled
       ? 'base--button'
@@ -549,7 +562,7 @@ export default React.createClass({
           </Pane>
         </Tabs>
 
-        <MetricView speaker_metrics={speaker_metrics}/>
+        <MetricView speaker_metrics={speaker_metrics} onSpeakerNameChange={this.handleChangeSpeakerName}/>
 
 
       </Dropzone>
