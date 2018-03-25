@@ -1,12 +1,15 @@
-# Speech to Text Browser Application
+# Equalyzer
 
-[![Build Status](https://travis-ci.org/watson-developer-cloud/speech-to-text-nodejs.svg?branch=master)](https://travis-ci.org/watson-developer-cloud/speech-to-text-nodejs)
+Meeting leaders utilize Equalyzer in order to better moderate group discussions. The web application keeps track of those speaking, noting on-screen frequent interruptors and absent voices. These prompts assist leaders in more objectively understanding the dynamic of their team, and concerns they should address.
 
-  The [Speech to Text][service_url] service uses IBM's speech recognition capabilities to convert speech in multiple languages into text. The transcription of incoming audio is continuously sent back to the client with minimal delay, and it is corrected as more speech is heard. The service is accessed via a WebSocket interface; a REST HTTP interface is also available;
+## How it Works
 
-Node.js is also used to provide the browser client's authentication token.
+Equalyzer uses IBM's speech recognition capabilities to convert speech, in multiple languages and optionally multiple people, into text. The transcription of incoming audio is continuously sent back to the client with minimal delay, and it is corrected as more speech is heard. The service is accessed via a WebSocket interface; a REST HTTP interface is also available. Node.js is also used to provide the browser client's authentication token.
 
-[![Deploy to Bluemix](https://bluemix.net/deploy/button.png)](https://bluemix.net/deploy?repository=https://github.com/watson-developer-cloud/speech-to-text-nodejs)
+## Inspiration
+During the opening ceremony, Dr. John Gates, the University of Virginia's School of Engineering's Dean of Diversity and Inclusion, spoke about to achieve true diversity means more than casting a wider net of inclusion. No matter how wide a net of inclusion, there'll exist some form of exclusion. Hence, it's important that the battle for diversity involve both greater inclusion and engagement.
+
+Our team thought about what it meant to more fully engage underrepresented or otherwise disenfranchised members of the community. In doing so, we thought up of roundtable discussions, and how they involve a few major players dominating the conversation, with others wishing the time away. This dynamic prevents teams from achieving their full potential. They're missing out on the ideas and insights of valuable team members.
 
 ## Getting started
 
@@ -69,17 +72,6 @@ Node.js is also used to provide the browser client's authentication token.
 
 9. Point your browser to [http://localhost:3000](http://localhost:3000).
 
-10. **Optional:** Push the application to Bluemix:
-
-  ```none
-  cf push
-  ```
-
-After completing the steps above, you are ready to test your application. Start a browser and enter the URL of your application.
-
-            <your application name>.mybluemix.net
-
-
 For more details about developing applications that use Watson Developer Cloud services in Bluemix, see [Getting started with Watson Developer Cloud and Bluemix][getting_started].
 
 
@@ -114,33 +106,11 @@ For more details about developing applications that use Watson Developer Cloud s
 
 ## License
 
-  This sample code is licensed under Apache 2.0.
+  This  ode is licensed under Apache 2.0.
 
 ## Contributing
 
   See [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Open Source @ IBM
-  Find more open source projects on the [IBM Github Page](http://ibm.github.io/)
-
-## Privacy Notice
-
-Sample web applications that include this package may be configured to track deployments to [IBM Bluemix](https://www.bluemix.net/) and other Cloud Foundry platforms. The following information is sent to a [Deployment Tracker](https://github.com/IBM-Bluemix/cf-deployment-tracker-service) service on each deployment:
-
-* Node.js package version
-* Node.js repository URL
-* Application Name (`application_name`)
-* Space ID (`space_id`)
-* Application Version (`application_version`)
-* Application URIs (`application_uris`)
-* Labels of bound services
-* Number of instances for each bound service and associated plan information
-
-This data is collected from the `package.json` file in the sample application and the `VCAP_APPLICATION` and `VCAP_SERVICES` environment variables in IBM Bluemix and other Cloud Foundry platforms. This data is used by IBM to track metrics around deployments of sample applications to IBM Bluemix to measure the usefulness of our examples, so that we can continuously improve the content we offer to you. Only deployments of sample applications that include code to ping the Deployment Tracker service will be tracked.
-
-[deploy_track_url]: https://github.com/cloudant-labs/deployment-tracker
-[cloud_foundry]: https://github.com/cloudfoundry/cli
-[getting_started]: https://www.ibm.com/watson/developercloud/doc/common/index.html
-[service_url]: https://www.ibm.com/watson/services/speech-to-text/
-[docs]: http://www.ibm.com/watson/developercloud/speech-to-text/
-[sign_up]: https://console.bluemix.net/registration/
+  Find more Watson open source projects on the [IBM Github Page](http://ibm.github.io/)
