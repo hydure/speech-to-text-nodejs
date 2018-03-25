@@ -10,6 +10,7 @@ import Transcript from './transcript.jsx';
 import { Keywords, getKeywordsSummary } from './keywords.jsx';
 import SpeakersView from './speaker.jsx';
 import TimingView from './timing.jsx';
+import MetricView from './metric.jsx';
 import JSONView from './json-view.jsx';
 import samples from '../src/data/samples.json';
 import cachedModels from '../src/data/models.json';
@@ -337,7 +338,37 @@ export default React.createClass({
 
 
 ////
+  getSpeakerMetrics(instantnoodlesaretasty){
+    var speakers = {};
 
+    if (instantnoodlesaretasty.length != 0) {
+      if (instantnoodlesaretasty[0].results) {
+        let prev_result_end_time = -2000;
+        for (let i of instantnoodlesaretasty[0].results) {
+          if (!speakers[i.speaker] && i.speaker != undefined){
+
+            speakers[i.speaker] = {aggressive: 0, hesitance: 0, timespent: 0};
+          }
+          let start_time = i.alternatives[0].timestamps[0][1];
+          // if (start_time < (prev_result_end_time + 1))
+          if(start_time < prev_result_end_time + 0.5)
+            speakers[i.speaker].aggressive += 1;
+
+
+
+          //set speaker metric
+
+          prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
+
+
+        }
+      }
+    }
+
+    console.log(speakers);
+
+    return speakers;
+  },
 
 
 
@@ -350,24 +381,7 @@ export default React.createClass({
 
     //console.log(JSON.stringify(final, null, 2));
 
-    if (final.length != 0) {
-      if (final[0].results) {
-        let prev_result_end_time = -2000;
-        for (let i of final[0].results) {
-          let start_time = i.alternatives[0].timestamps[0][1];
-          // if (start_time < (prev_result_end_time + 1))
-            if(start_time < prev_result_end_time + 0.5)
-              i.speaker;
 
-
-          //set speaker metric
-
-          prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
-
-
-        }
-      }
-    }
 
 
     //console.log(JSON.stringify(final.results.alternatives, null, 2));
@@ -415,6 +429,7 @@ export default React.createClass({
       : null;
 
     const messages = this.getFinalAndLatestInterimResult();
+    const speaker_metrics = this.getSpeakerMetrics(messages);
     const micBullet = (typeof window !== 'undefined' && recognizeMicrophone.isSupported) ?
       <li className="base--li">Use your microphone to record audio.</li> :
       <li className="base--li base--p_light">Use your microphone to record audio. (Not supported in current browser)</li>;// eslint-disable-line
@@ -547,6 +562,9 @@ export default React.createClass({
             <JSONView raw={this.state.rawMessages} formatted={this.state.formattedMessages} />
           </Pane>
         </Tabs>
+
+        <MetricView speaker_metrics={speaker_metrics}/>
+
 
       </Dropzone>
     );
