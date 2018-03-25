@@ -457,27 +457,21 @@ export default React.createClass({
         rejectClassName="dropzone-reject"
         ref={(node) => {
           this.dropzone = node;
-        }}
-      >
+        }}>
 
-        <div className="drop-info-container">
-          <div className="drop-info">
-            <h1>Drop an audio file here.</h1>
-            <p>{'Watson Speech to Text supports .mp3, .mpeg, .wav, .opus, and .flac files up to 200mb.'}</p>
-          </div>
-        </div>
-        <h2 className="base--h1">eQualizer</h2>
-        <hr/>
-        <h2 className="base--h4">Transcribe Audio</h2>
-
+        <h1 className="base--hr">equalyzer</h1>
         <div style={{
-          paddingRight: '3em',
           paddingBottom: '2em',
-        }}
-        >
-          Use your microphone to record audio. The returned result includes the recognized text, {' '}
-          <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#word_alternatives">word alternatives</a>, {' '}
-          and <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#keyword_spotting">spotted keywords</a>. {' '}
+        }}>
+          <p>equalyzer facilitates productive and inclusive team meetings.</p>
+
+          <p>At the start of your meeting, click "Start Session". Have users introduce themselves
+          to the room, as to allow equalyzer to learn those there.</p>
+
+          <p>Throughout the meeting, equalyzer may urge moderator intervention. For example,
+          it may request the moderator remind a participant to respect other speakers
+          should s/he continually interrupt others. Additionally, equalyzer will prompt
+          the moderator to include withdrawn participants to feel welcome to join the discussion.</p>
         </div>
         <hr/>
         <div className="flex setup">
