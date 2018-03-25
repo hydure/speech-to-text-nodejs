@@ -21,7 +21,7 @@ export default function MetricView(props) {
           {console.log(props.speaker_metrics[speaker_id].timeSinceSpoken)}
 
           <div>
-            {props.speaker_metrics[speaker_id].timeSinceSpoken >= 10 ? "User hasn't spoken recently" : ""}
+            {props.speaker_metrics[speaker_id].timeSinceSpoken >= 20 ? "User hasn't spoken recently" : ""}
           </div>
 
           <span>Speaker: {speaker_id}</span>

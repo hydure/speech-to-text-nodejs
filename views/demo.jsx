@@ -380,8 +380,10 @@ export default React.createClass({
       }
     }
 
-    for (let ie = 0; ie < speakers.length; ie++){
-        console.log(ie)
+
+
+    for (let ie of Object.keys(speakers)){
+        console.log(ie);
         speakers[ie].timeSinceSpoken = latestTime - speakers[ie].lastSpoken;
       
     }
