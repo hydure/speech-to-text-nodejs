@@ -456,6 +456,7 @@ export default React.createClass({
           </div>
         </div>
         <h2 className="base--h1">eQualizer</h2>
+        <hr/>
         <h2 className="base--h4">Transcribe Audio</h2>
 
         <ul className="base--ul">
@@ -463,10 +464,6 @@ export default React.createClass({
           <li className="base--li">{'Upload pre-recorded audio (.mp3, .mpeg, .wav, .flac, or .opus only).'}</li>
           <li className="base--li">Play one of the sample audio files.*</li>
         </ul>
-
-        <div className="smalltext">
-          {'*Both US English broadband sample audio files are covered under the Creative Commons license.'}
-        </div>
 
         <div style={{
           paddingRight: '3em',
@@ -478,9 +475,9 @@ export default React.createClass({
           and <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#keyword_spotting">spotted keywords</a>. {' '}
           Some models can <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels">detect multiple speakers</a>; this may slow down performance.
         </div>
+        <hr/>
         <div className="flex setup">
           <div className="column">
-
             <p>Voice Model:
               <ModelDropdown
                 model={this.state.model}
