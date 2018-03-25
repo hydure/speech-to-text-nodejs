@@ -9,7 +9,7 @@ export default function Layout(props) {
   return (
     <html lang="en">
       <head>
-        <title>Speech to Text Demo</title>
+        <title>eQualyzer</title>
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
