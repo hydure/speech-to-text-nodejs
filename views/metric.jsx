@@ -15,7 +15,7 @@ export default function MetricView(props) {
   const result = Object.keys(props.speaker_metrics).map((speaker_id, index) =>
     (<div className="row">
         <div className="base--button" style={{
-          minHeight: '75px', borderColor: props.speaker_metrics[speaker_id].aggressive > 0 ? 'red' : 'purple',
+          minHeight: '75px', borderColor: (props.speaker_metrics[speaker_id].aggressive >= 3) ? 'red' : 'purple',
         }}>
 
           {console.log(props.speaker_metrics[speaker_id].timeSinceSpoken)}
@@ -24,16 +24,18 @@ export default function MetricView(props) {
             {props.speaker_metrics[speaker_id].timeSinceSpoken >= 10 ? "User hasn't spoken recently" : ""}
           </div>
 
-          <input style={{ minHeight: '75px', textAlign: 'center', border: 'none' ,outline: 'none'
+          <span>Speaker: {speaker_id}</span>
+
+         {/* <input value={"Speaker: " + speake_id} style={{ minHeight: '75px', textAlign: 'center', border: 'none' ,outline: 'none'
 }} onKeyPress={
             (e) => {
                 //this.updateInput(e);
                 if (e.key === 'Enter') {
                     console.log();
-                    props.onSpeakerNameChange(speaker_id, "placeholder"/* TODO: determine how to get input value */);
+                    props.onSpeakerNameChange(speaker_id, "placeholder"};
                 }
             }
-          }/>
+          }/>*/}
 
           {/*     Speaker: {speaker_id}{" "}{Object.keys(props.speaker_metrics[speaker_id]).map((metric_name, i) =>
 //   (<span>{metric_name}{"-"}{props.speaker_metrics[speaker_id][metric_name]}{" "}</span>)

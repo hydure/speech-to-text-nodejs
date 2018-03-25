@@ -369,8 +369,6 @@ export default React.createClass({
             }
           }
 
-
-
           prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
           if(prev_result_end_time > latestTime)
             latestTime = prev_result_end_time;
