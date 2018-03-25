@@ -68,17 +68,6 @@ casper.test.begin('Speech to Text', 24, function suite(test) {
     });
   }
 
-  function testHeaderLinks() {
-    casper.test.comment('Testing the header links');
-
-    checkLinkDest('div.header--wordmark');
-    checkLinkDest('div.header--breadcrumbs');
-
-    checkLinkDest('nav.jumbotron--nav li:nth-child(1)');
-    checkLinkDest('nav.jumbotron--nav li:nth-child(2)');
-    checkLinkDest('nav.jumbotron--nav li:nth-child(3)');
-  }
-
   function testPlaySample() {
     casper.test.comment('Testing playing sameple 1');
 
@@ -101,7 +90,6 @@ casper.test.begin('Speech to Text', 24, function suite(test) {
     test.assert(result.status === 200, 'Front page opens');
     test.assertEquals(this.getTitle(), 'Speech to Text Demo', 'Title is found');
 
-    testHeaderLinks();
     testVoiceModel();
     testKeywords();
     testForButtons();
