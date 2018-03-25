@@ -38,12 +38,12 @@
   "en-US_BroadbandModel": [
     {
       "filename": "en-US_Broadband_sample1.wav",
-      "keywords": "IBM, admired, AI, transformations, cognitive",
+      "keywords": "unfair, empowerment, diversity, necessary, security, talking points",
       "speaker_labels": true
     },
     {
       "filename": "en-US_Broadband_sample2.wav",
-      "keywords": "Artificial Intelligence, data, predict, learn",
+      "keywords": "data, predict, learn",
       "speaker_labels": true
     }
   ],

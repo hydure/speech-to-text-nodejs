@@ -429,9 +429,6 @@ export default React.createClass({
 
     const messages = this.getFinalAndLatestInterimResult();
     const speaker_metrics = this.getSpeakerMetrics(messages);
-    const micBullet = (typeof window !== 'undefined' && recognizeMicrophone.isSupported) ?
-      <li className="base--li">Use your microphone to record audio.</li> :
-      <li className="base--li base--p_light">Use your microphone to record audio. (Not supported in current browser)</li>;// eslint-disable-line
 
     return (
 
@@ -459,21 +456,14 @@ export default React.createClass({
         <hr/>
         <h2 className="base--h4">Transcribe Audio</h2>
 
-        <ul className="base--ul">
-          {micBullet}
-          <li className="base--li">{'Upload pre-recorded audio (.mp3, .mpeg, .wav, .flac, or .opus only).'}</li>
-          <li className="base--li">Play one of the sample audio files.*</li>
-        </ul>
-
         <div style={{
           paddingRight: '3em',
           paddingBottom: '2em',
         }}
         >
-          The returned result includes the recognized text, {' '}
+          Use your microphone to record audio. The returned result includes the recognized text, {' '}
           <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#word_alternatives">word alternatives</a>, {' '}
           and <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#keyword_spotting">spotted keywords</a>. {' '}
-          Some models can <a className="base--a" href="https://console.bluemix.net/docs/services/speech-to-text/output.html#speaker_labels">detect multiple speakers</a>; this may slow down performance.
         </div>
         <hr/>
         <div className="flex setup">
