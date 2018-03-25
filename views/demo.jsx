@@ -522,10 +522,10 @@ export default React.createClass({
         <div className="flex buttons">
 
           <button className={micButtonClass} onClick={this.handleMicClick}>
-            <Icon type={this.state.audioSource === 'mic' ? 'stop' : 'microphone'} fill={micIconFill} /> Record Audio
+            <Icon type={this.state.audioSource === 'mic' ? 'stop' : 'microphone'} fill={micIconFill} /> Start Session
           </button>
 
-          <button className={buttonClass} onClick={this.handleUploadClick}>
+          {/*<button className={buttonClass} onClick={this.handleUploadClick}>
             <Icon type={this.state.audioSource === 'upload' ? 'stop' : 'upload'} /> Upload Audio File
           </button>
 
@@ -535,7 +535,7 @@ export default React.createClass({
 
           <button className={buttonClass} onClick={this.handleSample2Click}>
             <Icon type={this.state.audioSource === 'sample-2' ? 'stop' : 'play'} /> Play Sample 2
-          </button>
+      </button>*/}
 
         </div>
 
