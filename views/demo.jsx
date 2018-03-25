@@ -10,7 +10,6 @@ import Transcript from './transcript.jsx';
 import { Keywords, getKeywordsSummary } from './keywords.jsx';
 import SpeakersView from './speaker.jsx';
 import TimingView from './timing.jsx';
-import MetricView from './metric.jsx';
 import JSONView from './json-view.jsx';
 import samples from '../src/data/samples.json';
 import cachedModels from '../src/data/models.json';
@@ -19,9 +18,6 @@ const ERR_MIC_NARROWBAND = 'Microphone transcription cannot accommodate narrowba
 
 export default React.createClass({
   displayName: 'Demo',
-
-
-
 
   getInitialState() {
     return {
@@ -58,7 +54,7 @@ export default React.createClass({
     this.setState({
       settingsAtStreamStart: {
         model: this.state.model,
-        keywords: this.getKeywordsArr(),
+        keywords: this.getKeywordsArrUnique(),
         speakerLabels: this.state.speakerLabels,
       },
     });
@@ -74,7 +70,7 @@ export default React.createClass({
   },
 
   getRecognizeOptions(extra) {
-    const keywords = this.getKeywordsArr();
+    const keywords = this.getKeywordsArrUnique();
     return Object.assign({
       // formats phone numbers, currency, etc. (server-side)
       token: this.state.token,
@@ -318,6 +314,19 @@ export default React.createClass({
     return this.state.keywords.split(',').map(k => k.trim()).filter(k => k);
   },
 
+  // cleans up the keywords string and produces a unique list of keywords
+  getKeywordsArrUnique() {
+    var arr = this.state.keywords.split(',').map(k => k.trim()).filter(k => k);
+    var u = {}, a = [];
+    for(var i = 0, l = arr.length; i < l; ++i){
+        if(!u.hasOwnProperty(arr[i])) {
+            a.push(arr[i]);
+            u[arr[i]] = 1;
+        }
+    }
+    return a;
+  },
+
   getFinalResults() {
     return this.state.formattedMessages.filter(r => r.results &&
       r.results.length && r.results[0].final);
@@ -335,57 +344,12 @@ export default React.createClass({
     return r;
   },
 
-
-
-////
-  getSpeakerMetrics(instantnoodlesaretasty){
-    var speakers = {};
-
-    if (instantnoodlesaretasty.length != 0) {
-      if (instantnoodlesaretasty[0].results) {
-        let prev_result_end_time = -2000;
-        for (let i of instantnoodlesaretasty[0].results) {
-          if (!speakers[i.speaker] && i.speaker != undefined){
-
-            speakers[i.speaker] = {aggressive: 0, hesitance: 0, timespent: 0};
-          }
-          let start_time = i.alternatives[0].timestamps[0][1];
-          // if (start_time < (prev_result_end_time + 1))
-          if(start_time < prev_result_end_time + 0.5)
-            speakers[i.speaker].aggressive += 1;
-
-
-
-
-          prev_result_end_time = i.alternatives[0].timestamps[i.alternatives[0].timestamps.length - 1 ][2];
-
-          if(speakers[i.speaker] && i.speaker != undefined)
-            speakers[i.speaker].timespent += (prev_result_end_time - start_time);
-        }
-      }
-    }
-
-    console.log(speakers);
-
-    return speakers;
-  },
-
-
   getFinalAndLatestInterimResult() {
     const final = this.getFinalResults();
     const interim = this.getCurrentInterimResult();
     if (interim) {
       final.push(interim);
     }
-
-    //console.log(JSON.stringify(final, null, 2));
-
-
-
-
-    //console.log(JSON.stringify(final.results.alternatives, null, 2));
-
-
     return final;
   },
 
@@ -428,7 +392,6 @@ export default React.createClass({
       : null;
 
     const messages = this.getFinalAndLatestInterimResult();
-    const speaker_metrics = this.getSpeakerMetrics(messages);
     const micBullet = (typeof window !== 'undefined' && recognizeMicrophone.isSupported) ?
       <li className="base--li">Use your microphone to record audio.</li> :
       <li className="base--li base--p_light">Use your microphone to record audio. (Not supported in current browser)</li>;// eslint-disable-line
@@ -455,8 +418,8 @@ export default React.createClass({
             <p>{'Watson Speech to Text supports .mp3, .mpeg, .wav, .opus, and .flac files up to 200mb.'}</p>
           </div>
         </div>
-
-        <h2 className="base--h2">Transcribe Audio</h2>
+        <h2 className="base--h1">eQualyzer</h2>
+        <h2 className="base--h4">Transcribe Audio</h2>
 
         <ul className="base--ul">
           {micBullet}
@@ -507,7 +470,7 @@ export default React.createClass({
           <div className="column">
 
             <p>Keywords to spot: <input
-              value={this.state.keywords}
+              value={this.getKeywordsArrUnique().join()}
               onChange={this.handleKeywordsChange}
               type="text"
               id="keywords"
@@ -517,7 +480,6 @@ export default React.createClass({
 
           </div>
         </div>
-
 
         <div className="flex buttons">
 
@@ -561,9 +523,6 @@ export default React.createClass({
             <JSONView raw={this.state.rawMessages} formatted={this.state.formattedMessages} />
           </Pane>
         </Tabs>
-
-        <MetricView speaker_metrics={speaker_metrics}/>
-
 
       </Dropzone>
     );
