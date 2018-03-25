@@ -17,6 +17,11 @@ export default function MetricView(props) {
         <div className="base--button" style={{
           minHeight: '100px', borderColor: props.speaker_metrics[speaker_id]['aggressive'] > 0 ? 'red' : 'purple',
         }}>
+
+          {console.log(props.speaker_metrics[speaker_id].lastSpoken)}
+
+          {props.speaker_metrics[speaker_id].lastSpoken >= 120 ? "User haven't said anything in a while" : ""}
+          
           <input style={{ minHieght: '100px', textAlign: 'center', border: 'none' ,outline: 'none'
 }} onKeyPress={
             (e) => {
